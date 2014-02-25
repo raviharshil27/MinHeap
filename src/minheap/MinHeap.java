@@ -2,33 +2,35 @@
 package minheap;
 
 import java.util.Iterator;
-import node.Node;
 
 /**
  * @author Harshil Shah
  */
 public class MinHeap {
 
-    public Node root = null;
-    Node currentNode = root;
-    private StringBuffer traversalString = new StringBuffer();
+    private HeapNode root = null;
+//    Node currentNode = root;
+//    private StringBuffer traversalString = new StringBuffer();
     public static void main(String[] args) 
     {
         MinHeap minHeap = new MinHeap();
         String values[] = "a b c d e f g h i".split(" ");
         minHeap.addDataToMinHeap(values);
-        minHeap.printElementsWithEndingCharacter("ing");
-        minHeap.printElements();
-        
+        NodeIterator itr= new NodeIterator(minHeap.root);
+        while(itr.hasNext())
+            System.out.println(itr.next());
+                  
+//        minHeap.printElementsWithEndingCharacter("ing");
+//        minHeap.toString();
     }
 
-    public void addNode(String value) 
+    public void add(String value) 
     {
-        currentNode = root;
-        Node newNode = new Node(value);
+        HeapNode currentNode = root;
+        HeapNode newNode = new HeapNode(value);
         if (root == null) {
-            root = new Node();
-            root.value = value;
+            root = new HeapNode(value);
+//            root.value = value;
             currentNode = root;
         } 
         else {
@@ -53,7 +55,8 @@ public class MinHeap {
                         break;
                     } 
                     else{
-                        //check the height if its same then add to left else add to 					//side which has less height.......
+                        //check the height if its same then add to left else add to 
+                        //side which has less height.......
                         if(currentNode.getHeightDifference() <=0)
                             currentNode = currentNode.leftChild;
                         else 
@@ -64,19 +67,19 @@ public class MinHeap {
         }
     }
     
-    public String printElements() {
-        currentNode = root;
-        traversalString = new StringBuffer();
-        preOrderTraversing(currentNode);
+    @Override
+    public String toString() {
+        StringBuffer traversalString = new StringBuffer();
+        root.preOrderTraversing(traversalString);
         System.out.println(traversalString);
         return traversalString.toString();
     }
     
     public String printElementsWithEndingCharacter(String endingCharacter)
     {
-        currentNode = root;
-        traversalString = new StringBuffer();
-        preOrderTraversing(currentNode);
+       
+        StringBuffer traversalString = new StringBuffer();
+        root.preOrderTraversing(traversalString);
         String nodeValues[]= traversalString.toString().split(" ");
         traversalString = new StringBuffer();
         for(int i=0;i<nodeValues.length;i++)
@@ -88,17 +91,11 @@ public class MinHeap {
         return traversalString.toString();
     }
 
-    public void preOrderTraversing(Node node) {
-        if (node == null) 
-            return;
-        traversalString.append(node.value + " ");
-        preOrderTraversing(node.leftChild);
-        preOrderTraversing(node.rightChild);
-    }
+ 
 
     public void addDataToMinHeap(String values[]) {
         for (int i = 0; i < values.length; i++) 
-            addNode(values[i]);
+            add(values[i]);
     }
 }
 

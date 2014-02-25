@@ -2,7 +2,7 @@ package com.test;
 
 import java.util.LinkedList;
 import minheap.MinHeap;
-import node.Node;
+import minheap.HeapNode;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -19,7 +19,7 @@ public class MinHeapTest {
         String expectedoutput ="a b d g f c e i h ";
         MinHeap actualMinHeap = new MinHeap();
         actualMinHeap.addDataToMinHeap(values);
-        String actualTraversal = actualMinHeap.printElements();
+        String actualTraversal = actualMinHeap.toString();
         assertEquals(expectedoutput, actualTraversal);
         
     }
