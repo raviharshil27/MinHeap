@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package minheap;
 
 import java.util.Iterator;
@@ -12,11 +8,11 @@ import java.util.Stack;
  *
  * @author Harshil
  */
-public class NodeIterator implements Iterator<HeapNode> {
+public class NodeIterator implements Iterator<Node> {
     private Stack stackedNodes = new Stack();
-    private HeapNode next;
+    private Node next;
 
-    public NodeIterator(HeapNode root) {
+    public NodeIterator(Node root) {
         stackedNodes.push(root.rightChild);
         stackedNodes.push(root.leftChild);
         next = root;
@@ -25,18 +21,17 @@ public class NodeIterator implements Iterator<HeapNode> {
     
     @Override
     public boolean hasNext() {
-        if(next != null)
-            return true;
-        else
-            return false;              
-//        return (next != null);
+//        if(next != null)
+//            return true;
+//        else
+//            return false;              
+        return (!next.isNil() && !stackedNodes.isEmpty());
     }
 
     @Override
-    public HeapNode next() {
-        if(next == null)
-            return next = null;
-        HeapNode currentNode = next;
+    public Node next() {
+       
+        Node currentNode = next;
         next = getNext();
         return currentNode;
     }
@@ -46,18 +41,16 @@ public class NodeIterator implements Iterator<HeapNode> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public HeapNode getNext()
+    public Node getNext()
     {
         if(stackedNodes.isEmpty())
-            return next = null;
-        next = (HeapNode) stackedNodes.pop();
-        while(next == null && !stackedNodes.isEmpty())
-        {
-            next= (HeapNode) stackedNodes.pop();
+             throw new java.util.NoSuchElementException();
+        next = (Node) stackedNodes.pop();
+        while(next.isNil() && !stackedNodes.isEmpty())
+        {//if node is nill and staack has some elments then get next elements...
+            next= (Node) stackedNodes.pop();
         }
-        if(next.rightChild != null)
             stackedNodes.push(next.rightChild);
-        if(next.leftChild != null)
             stackedNodes.push(next.leftChild);
         return next;
     }
