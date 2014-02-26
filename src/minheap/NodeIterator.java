@@ -21,10 +21,6 @@ public class NodeIterator implements Iterator<Node> {
     
     @Override
     public boolean hasNext() {
-//        if(next != null)
-//            return true;
-//        else
-//            return false;              
         return (!next.isNil() && !stackedNodes.isEmpty());
     }
 
@@ -55,4 +51,3 @@ public class NodeIterator implements Iterator<Node> {
         return next;
     }
 }
-

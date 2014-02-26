@@ -81,10 +81,43 @@ public class MinHeap implements Heap{
         if(size == 0)
             root = new HeapNode(value,new HeapNullNode());
         else
-            root.add(value,root.parent);
+//            root.add(value,root.parent);
+            addData(root,value);
+        
         size++;
     }
-    
+    public void addData(Node currentNode , String value)
+    {
+        if(currentNode.isNil())
+        {
+            currentNode.add(value,currentNode.parent);
+            return;
+        }
+        if( currentNode.value.compareTo(value) > 0)
+        {
+             //swap the values and do the rest further in the tree...
+             String swapString = value;
+             value = (currentNode.value);
+             currentNode.value = swapString;
+             System.out.println("Swapping of the values done..");
+         }
+        if(currentNode.leftChild.isNil())
+        {
+             currentNode.setLeftChild = true;
+             currentNode.leftChild.add(value,currentNode);
+             return;
+        }
+        else if(currentNode.rightChild.isNil())
+        {
+            currentNode.setRightChild = true;
+            currentNode.rightChild.add(value,currentNode);
+            return;
+        }
+            if(currentNode.getHeightDifference() <=0)
+                addData(currentNode.leftChild, value);
+            else 
+               addData(currentNode.rightChild, value);
+    }
     @Override
     public String toString() {
 //        StringBuffer traversalString = new StringBuffer();

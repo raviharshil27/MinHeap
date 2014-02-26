@@ -17,7 +17,9 @@ public abstract class Node {
     protected boolean setRightChild = false;
     public abstract boolean isNil ();
     public abstract void add(String value, Node parent) ;
+//    public abstract void add(String value);
     public abstract int getHeight();
+    public abstract int getHeightDifference();
 
 
     
