@@ -6,14 +6,20 @@ package minheap;
  */
 public class HeapNullNode extends Node{
 
+    public HeapNullNode(Node parent) {
+        this.parent = parent;
+    }
+    
     @Override
     public boolean isNil() {
         return true;
     }
 
     @Override
-     public void add(String value,Node parent) {
-        Node newHeapNode = new HeapNode(value,parent);
+//     public void add(String value,Node parent) {
+     public void add(String value,HeapStrategy hs) {
+            
+        Node newHeapNode = new HeapNode(value);
        if(parent.setLeftChild)
        {
            parent.leftChild = newHeapNode;

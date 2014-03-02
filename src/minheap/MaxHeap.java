@@ -8,36 +8,14 @@ package minheap;
  *
  * @author Harshil
  */
-public class MaxHeap implements Heap{
+public class MaxHeap implements HeapStrategy{
 
     @Override
-    public void add(String value) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public boolean compareTo(String node1, String node2) {
+       if(node1.compareTo(node2) >0)
+            return true;
+       else
+           return false;
+    }   
 
-    @Override
-    public NodeIterator iterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }

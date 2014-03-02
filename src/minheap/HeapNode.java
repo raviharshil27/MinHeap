@@ -15,13 +15,13 @@ public class HeapNode extends Node
 
    public HeapNode(String value) {
         this.value = value;
-        leftChild = new HeapNullNode();
-        rightChild = new HeapNullNode();
+        leftChild = new HeapNullNode(this);
+        rightChild = new HeapNullNode(this);
     }
     public HeapNode(String value,Node parent) {
         this.value = value;
-        leftChild = new HeapNullNode();
-        rightChild = new HeapNullNode();
+        leftChild = new HeapNullNode(this);
+        rightChild = new HeapNullNode(this);
         this.parent = parent;
     }
     
@@ -62,8 +62,11 @@ public class HeapNode extends Node
 
    
     @Override
-     public void add(String value,Node parent) {
-        if( this.value.compareTo(value) > 0)
+//     public void add(String value,Node parent) {
+     public void add(String value,HeapStrategy hs) {
+    
+//        if( this.value.compareTo(value) > 0)
+          if(hs.compareTo(this.value, value))
         {
              //swap the values and do the rest further in the tree...
              String swapString = value;
@@ -74,12 +77,12 @@ public class HeapNode extends Node
             if(getHeightDifference() <=0)
             {
                 setLeftChild = true;
-                leftChild.add(value,this);
+                leftChild.add(value,hs);
             }
             else 
             {
                 setRightChild = true;
-                rightChild.add(value,this);
+                rightChild.add(value,hs);
             }
     }
 }

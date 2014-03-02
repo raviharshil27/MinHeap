@@ -8,75 +8,81 @@ import java.util.List;
 /**
  * @author Harshil Shah
  */
-public class MinHeap implements Heap{
+public class MinHeap{
 
     private Node root = new HeapNode();
     private int size =0;
+    private HeapStrategy hs;
 //    Node currentNode = root;
 //    private StringBuffer traversalString = new StringBuffer();
+
+    public MinHeap(HeapStrategy hs) {
+        this.hs = hs;
+    }
+    
     public static void main(String[] args) 
     {
-        MinHeap minHeap = new MinHeap();
+        MinHeap minHeap = new MinHeap(new MaxHeap());
                     
-//        String values[] = "a b c d e f g h i".split(" ");
-        String values[] = "asking asad barking testing".split(" ");
+        String values[] = "a b c d e f g h i".split(" ");
+//        String values[] = "asking asad barking testing".split(" ");
 
         minHeap.addDataToMinHeap(values);
-//        Iterator<Node> itr=minHeap.iterator();
-//        while(itr.hasNext())
-//            System.out.print(itr.next().value);
+        Iterator<String> itr=minHeap.iterator();
+        while(itr.hasNext())
+            System.out.print(itr.next());
 //        System.out.println(minHeap.size());
-          IngFilter ing = new IngFilter(new NodeIterator(minHeap.root));
-          while(ing.hasNext())
-              System.out.println(ing.next());
+//          IngFilter ing = new IngFilter(new NodeIterator(minHeap.root));
+//          while(ing.hasNext())
+//              System.out.println(ing.next());
 //        minHeap.printElementsWithEndingCharacter("ing");
 //        System.out.println(minHeap.toString());
     }
   
     
-    @Override
+ 
      public void add(String value) 
     {
         if(size == 0)
-            root = new HeapNode(value,new HeapNullNode());
+            root = new HeapNode(value,new HeapNullNode(null));
         else
-//            root.add(value,root.parent);
-            addData(root,value);
+            root.add(value,hs);
+//            addData(root,value);
         
         size++;
     }
-    private void addData(Node currentNode , String value)
-    {
-        if(currentNode.isNil())
-        {
-            currentNode.add(value,currentNode.parent);
-            return;
-        }
-        if( currentNode.value.compareTo(value) > 0)
-        {
-             //swap the values and do the rest further in the tree...
-             String swapString = value;
-             value = (currentNode.value);
-             currentNode.value = swapString;
-             System.out.println("Swapping of the values done..");
-         }
-        if(currentNode.leftChild.isNil())
-        {
-             currentNode.setLeftChild = true;
-             currentNode.leftChild.add(value,currentNode);
-             return;
-        }
-        else if(currentNode.rightChild.isNil())
-        {
-            currentNode.setRightChild = true;
-            currentNode.rightChild.add(value,currentNode);
-            return;
-        }
-            if(currentNode.getHeightDifference() <=0)
-                addData(currentNode.leftChild, value);
-            else 
-               addData(currentNode.rightChild, value);
-    }
+//    private void addData(Node currentNode , String value)
+//    {
+//        if(currentNode.isNil())
+//        {
+//            currentNode.add(value,currentNode.parent);
+//            return;
+//        }
+//        if( currentNode.value.compareTo(value) > 0)
+//        {
+//             //swap the values and do the rest further in the tree...
+//             String swapString = value;
+//             value = (currentNode.value);
+//             currentNode.value = swapString;
+//             System.out.println("Swapping of the values done..");
+//         }
+//        if(currentNode.leftChild.isNil())
+//        {
+//             currentNode.setLeftChild = true;
+//             currentNode.leftChild.add(value,currentNode);
+//             return;
+//        }
+//        else if(currentNode.rightChild.isNil())
+//        {
+//            currentNode.setRightChild = true;
+//            currentNode.rightChild.add(value,currentNode);
+//            return;
+//        }
+//            if(currentNode.getHeightDifference() <=0)
+//                addData(currentNode.leftChild, value);
+//            else 
+//               addData(currentNode.rightChild, value);
+//    }
     @Override
     public String toString() {
         StringBuffer traversalString = new StringBuffer();
@@ -86,7 +92,7 @@ public class MinHeap implements Heap{
         return traversalString.toString();
     }
     
-    @Override
+
     public NodeIterator iterator(){
         return new NodeIterator(root);
     }
@@ -112,14 +118,12 @@ public class MinHeap implements Heap{
         for (int i = 0; i < values.length; i++) 
             add(values[i]);
     }
-
-    @Override
     public int size() {
         return size;
 
     }
 
-    @Override
+
     public boolean isEmpty() {
         if(root == null)
             return true;
@@ -127,12 +131,12 @@ public class MinHeap implements Heap{
             return false;
     }
 
-    @Override
+
     public boolean contains(Object o) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+
     public void clear() {
         root = null;
     }
