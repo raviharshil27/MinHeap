@@ -1,7 +1,9 @@
 
 package minheap;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Harshil Shah
@@ -15,65 +17,22 @@ public class MinHeap implements Heap{
     public static void main(String[] args) 
     {
         MinHeap minHeap = new MinHeap();
-//        minHeap.add("a");
-//        minHeap.add("b");
-//        minHeap.add("c");
-//        System.out.println();
-        String values[] = "a b c d e f g h i".split(" ");
-        minHeap.addDataToMinHeap(values);
-        Iterator<Node> itr=minHeap.iterator();
-        while(itr.hasNext())
-            System.out.print(itr.next().value);
-//        System.out.println(minHeap.size());
-                  
-//        minHeap.printElementsWithEndingCharacter("ing");
-//        minHeap.toString();
-    }
+                    
+//        String values[] = "a b c d e f g h i".split(" ");
+        String values[] = "asking asad barking testing".split(" ");
 
-/*    public void add(String value) 
-    {
-        HeapNode currentNode = root;
-        HeapNode newNode = new HeapNode(value);
-        if (root == null) {
-            root = new HeapNode(value);
-//            root.value = value;
-            currentNode = root;
-        } 
-        else {
-            while (true)
-            {
-                if (currentNode.compareTo(newNode) > 0) {
-                    //swap the values and do the rest further in the tree...
-                    String swapString = currentNode.value;
-                    currentNode.value = (newNode.value);
-                    newNode.value = swapString;
-                    System.out.println("Swapping of the values done..");
-                } 
-                else {
-                      //if it comes here means check the height and the left or right 
-                      //node 
-                    if (currentNode.leftChild == null) {
-                        currentNode.leftChild =newNode;
-                        break;
-                    } 
-                    else if (currentNode.rightChild == null) {
-                        currentNode.rightChild =newNode;
-                        break;
-                    } 
-                    else{
-                        //check the height if its same then add to left else add to 
-                        //side which has less height.......
-                        if(currentNode.getHeightDifference() <=0)
-                            currentNode = currentNode.leftChild;
-                        else 
-                            currentNode = currentNode.rightChild;
-                    }
-                }
-            }
-        }
+        minHeap.addDataToMinHeap(values);
+//        Iterator<Node> itr=minHeap.iterator();
+//        while(itr.hasNext())
+//            System.out.print(itr.next().value);
+//        System.out.println(minHeap.size());
+          IngFilter ing = new IngFilter(new NodeIterator(minHeap.root));
+          while(ing.hasNext())
+              System.out.println(ing.next());
+//        minHeap.printElementsWithEndingCharacter("ing");
+//        System.out.println(minHeap.toString());
     }
-    */
-    
+  
     
     @Override
      public void add(String value) 
@@ -86,7 +45,7 @@ public class MinHeap implements Heap{
         
         size++;
     }
-    public void addData(Node currentNode , String value)
+    private void addData(Node currentNode , String value)
     {
         if(currentNode.isNil())
         {
@@ -120,19 +79,16 @@ public class MinHeap implements Heap{
     }
     @Override
     public String toString() {
-//        StringBuffer traversalString = new StringBuffer();
-//        root.preOrderTraversing(traversalString);
-//        System.out.println(traversalString);
-                throw new UnsupportedOperationException("Not supported yet.");
-
-//        return traversalString.toString();
+        StringBuffer traversalString = new StringBuffer();
+        Iterator<String> itr=iterator();
+        while(itr.hasNext())
+            traversalString.append(itr.next() + " ");
+        return traversalString.toString();
     }
     
     @Override
     public NodeIterator iterator(){
         return new NodeIterator(root);
-//                throw new UnsupportedOperationException("Not supported yet.");
-
     }
 //    public String printElementsWithEndingCharacter(String endingCharacter)
 //    {
@@ -159,15 +115,7 @@ public class MinHeap implements Heap{
 
     @Override
     public int size() {
-//        int size =0;
-//        Iterator itr = new NodeIterator(root);
-//        while(itr.hasNext())
-//        {
-//            itr.next();
-//            size++;
-//        }
-//        return size;
-                throw new UnsupportedOperationException("Not supported yet.");
+        return size;
 
     }
 

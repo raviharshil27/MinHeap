@@ -8,7 +8,7 @@ import java.util.Stack;
  *
  * @author Harshil
  */
-public class NodeIterator implements Iterator<Node> {
+public class NodeIterator implements Iterator<String> {
     private Stack stackedNodes = new Stack();
     private Node next;
 
@@ -25,11 +25,11 @@ public class NodeIterator implements Iterator<Node> {
     }
 
     @Override
-    public Node next() {
+    public String next() {
        
         Node currentNode = next;
         next = getNext();
-        return currentNode;
+        return currentNode.value;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class NodeIterator implements Iterator<Node> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public Node getNext()
+    private Node getNext()
     {
         if(stackedNodes.isEmpty())
              throw new java.util.NoSuchElementException();

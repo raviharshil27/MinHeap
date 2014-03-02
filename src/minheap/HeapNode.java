@@ -25,6 +25,7 @@ public class HeapNode extends Node
         this.parent = parent;
     }
     
+    @Override
     public int getHeightDifference()
     {
         int heightOfLeftChild = leftChild.getHeight();
@@ -51,6 +52,7 @@ public class HeapNode extends Node
 //        rightChild.preOrderTraversing(traversalString);
 ////        preOrderTraversing(node.leftChild,traversalString);
 ////        preOrderTraversing(node.rightChild,traversalString);
+    
 //    }
 
     @Override

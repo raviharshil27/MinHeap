@@ -24,14 +24,14 @@ public class MinHeapTest {
         
     }
     
-    @Test
-    public void testMinHeap1()
-    {
-        String values[] = "asking asad barking testing".split(" ");
-        String expectedoutput ="asking testing barking ";
-        MinHeap actualMinHeap = new MinHeap();
-        actualMinHeap.addDataToMinHeap(values);
-        String actualTraversal = actualMinHeap.printElementsWithEndingCharacter("ing");
-        assertEquals(expectedoutput,actualTraversal );
-    }
+//    @Test
+//    public void testMinHeap1()
+//    {
+//        String values[] = "asking asad barking testing".split(" ");
+//        String expectedoutput ="asking testing barking ";
+//        MinHeap actualMinHeap = new MinHeap();
+//        actualMinHeap.addDataToMinHeap(values);
+//        String actualTraversal = actualMinHeap.printElementsWithEndingCharacter("ing");
+//        assertEquals(expectedoutput,actualTraversal );
+//    }
 }
