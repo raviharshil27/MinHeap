@@ -13,11 +13,11 @@ public class HeapNode extends Node
     public HeapNode() {
     }
 
-   public HeapNode(String value) {
-        this.value = value;
-        leftChild = new HeapNullNode(this);
-        rightChild = new HeapNullNode(this);
-    }
+//   public HeapNode(String value) {
+//        this.value = value;
+//        leftChild = new HeapNullNode(this);
+//        rightChild = new HeapNullNode(this);
+//    }
     public HeapNode(String value,Node parent) {
         this.value = value;
         leftChild = new HeapNullNode(this);

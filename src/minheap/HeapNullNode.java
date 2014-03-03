@@ -19,7 +19,7 @@ public class HeapNullNode extends Node{
 //     public void add(String value,Node parent) {
      public void add(String value,HeapStrategy hs) {
             
-        Node newHeapNode = new HeapNode(value);
+        Node newHeapNode = new HeapNode(value,parent);
        if(parent.setLeftChild)
        {
            parent.leftChild = newHeapNode;

@@ -13,14 +13,53 @@ import java.util.Iterator;
  */
 public class Heap implements Collection<String> {
 
+    private Node root = new HeapNode();
+    private int size =0;
+    private HeapStrategy hs;
+    
+    public Heap(HeapStrategy hs) {
+        this.hs = hs;
+    }
+    
+    public static void main(String[] args) 
+    {
+        Heap minHeap = new Heap(new MinHeap());
+                    
+        String values[] = "a b c d e f g h i".split(" ");
+//        String values[] = "asking asad barking testing".split(" ");
+
+        minHeap.addDataToMinHeap(values);
+        Iterator<String> itr=minHeap.iterator();
+        while(itr.hasNext())
+            System.out.print(itr.next() + " ");
+//        System.out.println(minHeap.size());
+//          IngFilter ing = new IngFilter(new NodeIterator(minHeap.root));
+//          while(ing.hasNext())
+//              System.out.println(ing.next());
+//        minHeap.printElementsWithEndingCharacter("ing");
+//        System.out.println(minHeap.toString());
+    }
+  
+    @Override
+    public String toString() {
+        StringBuffer traversalString = new StringBuffer();
+        Iterator<String> itr=iterator();
+        while(itr.hasNext())
+            traversalString.append(itr.next() + " ");
+        return traversalString.toString();
+    }
+    
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
+          return size;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       if(root == null)
+            return true;
+        else
+            return false;
     }
 
     @Override
@@ -30,7 +69,7 @@ public class Heap implements Collection<String> {
 
     @Override
     public Iterator<String> iterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new NodeIterator(root);
     }
 
     @Override
@@ -44,8 +83,20 @@ public class Heap implements Collection<String> {
     }
 
     @Override
-    public boolean add(String e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean add(String value) {
+       if(size == 0)
+            root = new HeapNode(value,new HeapNullNode(null));
+        else
+            root.add(value,hs);
+//            addData(root,value);
+        
+        size++;
+        return true;
+    }
+    
+     public void addDataToMinHeap(String values[]) {
+        for (int i = 0; i < values.length; i++) 
+            add(values[i]);
     }
 
     @Override
@@ -77,6 +128,8 @@ public class Heap implements Collection<String> {
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    
 //    public void add(String value);
 //    @Override
 //    public String toString();
