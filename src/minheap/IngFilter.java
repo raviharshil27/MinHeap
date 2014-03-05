@@ -15,8 +15,8 @@ public class IngFilter
 {
     Iterator heapIterator = null;
     String next= null; 
-    public IngFilter(Iterator input) {
-        heapIterator = input;
+    public IngFilter(Iterator inputIterator) {
+        heapIterator = inputIterator;
         getNext();
     }
     
@@ -34,7 +34,7 @@ public class IngFilter
         if (heapIterator.hasNext()) {
             while (heapIterator.hasNext()) {
                 String value = (String) heapIterator.next();
-                if (value.endsWith("ing")) {
+                if (value.toLowerCase().endsWith("ing")) {
                     next = value;
                     break;
                 }

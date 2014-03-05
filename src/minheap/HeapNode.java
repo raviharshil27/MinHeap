@@ -66,14 +66,16 @@ public class HeapNode extends Node
      public void add(String value,HeapStrategy hs) {
     
 //        if( this.value.compareTo(value) > 0)
-          if(hs.compareTo(this.value, value))
-        {
-             //swap the values and do the rest further in the tree...
-             String swapString = value;
-             value = (this.value);
-             this.value = swapString;
-             System.out.println("Swapping of the values done..");
-         }
+//          if(hs.swap(this, value))
+//       {
+//             //swap the values and do the rest further in the tree...
+//             String swapString = value;
+//             value = (this.value);
+//             this.value = swapString;
+////             System.out.println("Swapping of the values done..");
+//         }
+        
+        value= hs.swap(this, value);
             if(getHeightDifference() <=0)
             {
                 setLeftChild = true;

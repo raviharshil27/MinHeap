@@ -8,7 +8,6 @@ package minheap;
  *
  * @author Harshil
  */
-public interface HeapStrategy {
-    public String swap(Node node1, String value);
+public class IngHeapDecorator {
     
 }

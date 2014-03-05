@@ -8,11 +8,15 @@ package minheap;
 public class MinHeap implements HeapStrategy{
 
     @Override
-    public boolean compareTo(String node1, String node2) {
-       if(node1.compareTo(node2) >0)
-            return true;
-       else
-           return false;
+    public String swap(Node node, String value) {
+       if(node.value.compareTo(value) >0)
+       {
+           String swapString = value;
+             value = (node.value);
+             node.value = swapString;
+       }
+       return value;
+
     }   
 
 }

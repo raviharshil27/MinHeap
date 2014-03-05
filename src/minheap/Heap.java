@@ -69,7 +69,7 @@ public class Heap implements Collection<String> {
 
     @Override
     public Iterator<String> iterator() {
-        return new NodeIterator(root);
+        return new HeapIterator(root);
     }
 
     @Override
@@ -128,19 +128,6 @@ public class Heap implements Collection<String> {
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    
-//    public void add(String value);
-//    @Override
-//    public String toString();
-//    public NodeIterator iterator();
-//    public int size();
-//    public boolean isEmpty();
-//    public boolean contains(Object o);
-////    public <T> T[] toArray(T[] a);
-//    public void clear();
-////    public boolean addAll(Collection<T> c);
-//    
     
     
 }
